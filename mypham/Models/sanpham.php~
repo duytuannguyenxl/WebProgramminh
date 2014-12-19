@@ -1,0 +1,12 @@
+<?php
+/**
+* Sanpham_Model sẽ chứa dữ liệu để cung cấp cho Sanpham_Controller
+*/
+class Sanpham_Model
+{
+public function __construct()
+{
+print 'Day la Sanpham_Model';
+}
+}
+?>

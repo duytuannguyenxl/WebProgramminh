@@ -1,0 +1,44 @@
+<?php 
+//Tự động include file chứa các class được gọi
+function __autoload($className)
+{
+//tách tên class bởi dấu _
+list($filename , $suffix) = explode('_' , $className);
+//Lấy đường dẫn đến file
+$file = SERVER_ROOT . '/models/' . strtolower($filename) . '.php';
+//Include file
+if (file_exists($file))
+{
+include_once($file);
+}
+else
+{
+//File không tồn tại
+die("File '$filename' định nghĩa lớp '$className' không tồn tại.");
+}
+}
+
+/**
+* Day la file dieu khien cua trang san pham
+*/
+
+class Sanpham_Controller{
+/**
+*Ten template nam trong thu muc 'View' trong mo hinh MVC
+*/
+
+public $template = 'sanpham';
+
+/**
+*Day la ham mac dinh de duoc goi tu router.php
+*@paeam array $getVar chua cac bietn GET tung trang index.php
+*/
+
+public function main(array $getVars)
+{
+$sanphamModel = new Sanpham_Model();
+$sanpham = $sanphamModel->getSanphamById('1');
+print_r($sanpham);
+}
+
+?>
